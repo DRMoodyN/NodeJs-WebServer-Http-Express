@@ -1,7 +1,12 @@
 const express = require("express");
+const hbs = require("hbs");
 const app = express();
 
 app.set('view engine', 'hbs');
+
+hbs.registerPartials(__dirname + "/views/partials", function (error) {
+
+})
 
 app.use(express.static("public"));
 

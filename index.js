@@ -1,17 +1,25 @@
 const express = require("express");
 const app = express();
 
+app.set('view engine', 'hbs');
+
 app.use(express.static("public"));
 
-app.use("/generic", (req, res) => {
+app.get("/", (req, res) => {
+    res.render("home", {
+        title: "Home"
+    });
+})
+
+app.get("/generic", (req, res) => {
     res.sendFile(__dirname + "/public/generic.html");
 });
 
-app.use("/elements", (req, res) => {
+app.get("/elements", (req, res) => {
     res.sendFile(__dirname + "/public/elements.html");
 });
 
-app.use("*", (req, res) => {
+app.get("*", (req, res) => {
     res.sendFile(__dirname + "/public/404.html");
 });
 
